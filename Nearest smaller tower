@@ -1,0 +1,47 @@
+class Solution {
+public:
+    vector<int> nearestSmallerTower(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> left(n, -1), right(n, -1), ans(n, -1);
+        stack<int> st;
+
+        for(int i = 0; i < n; i++){
+            while(!st.empty() && arr[st.top()] >= arr[i]) st.pop();
+            if(!st.empty()) left[i] = st.top();
+            st.push(i);
+        }
+
+        while(!st.empty()) st.pop();
+
+        for(int i = n-1; i >= 0; i--){
+            while(!st.empty() && arr[st.top()] >= arr[i]) st.pop();
+            if(!st.empty()) right[i] = st.top();
+            st.push(i);
+        }
+
+        for(int i = 0; i < n; i++){
+            if(left[i] == -1 && right[i] == -1) continue;
+            if(left[i] == -1) ans[i] = right[i];
+            else if(right[i] == -1) ans[i] = left[i];
+            else{
+                int first = i - left[i] , second = right[i] - i;
+                if(first < second){
+                    ans[i] = left[i];
+                }
+                else if(first > second){
+                    ans[i] = right[i];
+                }
+                else{
+                    if(arr[left[i]] <= arr[right[i]]){
+                        ans[i] = left[i];
+                    }
+                    else if(arr[left[i]] > arr[right[i]]){
+                        ans[i] = right[i];
+                    }
+                }
+            }
+        }
+
+        return ans;
+    }
+};
