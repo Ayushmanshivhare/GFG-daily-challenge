@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    int totalTime(int n, vector<int> &arr, vector<int> &t) {
+        unordered_map<int,int>mp;
+        int ans = 0;
+        
+        for(int i=0;i<n;i++){
+            if(mp.find(arr[i]) != mp.end()){
+                ans += t[arr[i]-1] ;
+            }
+            else{
+                ans++;
+            } 
+            mp[arr[i]]++;
+        }
+        return ans-1;
+    }
+};
