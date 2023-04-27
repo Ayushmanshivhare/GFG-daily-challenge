@@ -1,0 +1,32 @@
+class Solution{
+public:
+    vector<char> easyTask(int n,string s,int q,vector<vector<string>> &query){
+          vector<char>ans;
+          for(auto &it:query){
+              if(it[0] == "1"){
+                  int idx = stoi(it[1]);
+                  s[idx] = it[2][0];
+                  
+              }
+              
+              else if(it[0] == "2"){
+                int arr[26] = {0};
+                int left = stoi(it[1]);
+                int right = stoi(it[2]);
+                int k = stoi(it[3]);
+                
+               for(int i=left;i<=right;i++){
+                   arr[s[i]-'a']++;
+               }
+               for(int i=25;i>=0;i--){
+                   k -= arr[i];
+                if(k<=0)  {
+                     ans.push_back(i+'a');
+                   break;
+                }
+               }
+              }
+          }
+          return ans;
+    }
+};
