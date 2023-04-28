@@ -1,0 +1,21 @@
+ int firstmaximum = 0 , secondmaximum = 0, thirdmaximum = 0;
+    int maxi = max(a,(max(b,c)));
+    
+    if(a == maxi) {
+        firstmaximum = b;
+        secondmaximum = c;
+    }
+    if(b == maxi) {
+        firstmaximum = a;
+        secondmaximum = c;
+    }
+    if(c == maxi) {
+        firstmaximum = a;
+        secondmaximum = b;
+    }
+    
+    thirdmaximum = a + b + c - firstmaximum - secondmaximum;
+     
+    if( (((secondmaximum+thirdmaximum)*2)+2) < maxi) return -1;
+    
+    return a + b + c;
