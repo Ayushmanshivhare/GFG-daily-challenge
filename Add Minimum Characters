@@ -1,0 +1,21 @@
+class Solution{   
+public:
+   int f
+    int addMinChar(string str){    
+        int n = str.size() , i=0, j=n-1 , ans = 0;
+        bool f = false;
+        
+        while(i<=j){
+            if(str[i] == str[j]){
+                i++;
+                j--;
+            }
+            else{
+                ans++;
+                i=0;
+                j=n-ans-1;
+            }
+        }
+        return ans;
+    }
+};
